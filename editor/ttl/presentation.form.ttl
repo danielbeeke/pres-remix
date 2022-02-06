@@ -1,0 +1,15 @@
+@prefix form:                <http://rdf.danielbeeke.nl/form/form-dev.ttl#> .
+@prefix presentationForm:    <https://localhost:3000/ttl/presentation.form.ttl#> .
+@prefix presentation:        <https://localhost:3000/ttl/presentation.ttl#> .
+
+presentationForm:
+    form:binding      presentation:Presentation ;
+    form:label        "presentation"@en ;
+    a                 form:Form .
+
+presentationForm:title
+    a                 form:Field ;
+    form:widget       "string" ;
+    form:label        "Title"@en ;
+    form:binding      presentation:title ;
+    form:order        2 .

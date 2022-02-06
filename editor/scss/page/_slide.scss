@@ -1,0 +1,13 @@
+.page-slide {
+
+  .slide-form {
+    grid-area: left;
+    overflow-y: auto;
+  }
+
+  .preview {
+    grid-area: right;
+    overflow: hidden;
+    margin-block: auto;
+  }
+}

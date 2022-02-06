@@ -1,0 +1,30 @@
+@import './base';
+
+@import './page/page';
+@import './page/slide';
+@import './page/presentation';
+
+@import './components/thumbnails';
+@import './components/slide';
+@import './components/button';
+
+@import 'rdf-form/src/scss/components/button';
+
+:root {
+  // Copied from rdf-form
+  --radius: 4px;
+  --background-color: #eef6f4;
+  --background-color-secondary: #dbdbdb;
+  --color-gray-light: #ecebeb;
+  --color-gray: #c3c3c3;
+  --color-gray-dark: #827575;
+  --color-gray-blue: #f3f5f9;
+  --color-gray-medium: #908989;
+  --color-primary: #99e9ab;
+  --color-primary-darker: #45a35b;
+  --color-secondary: #b0c6b4;
+  --color-danger: #cd4d4d;
+  --color-text: #102406;
+
+  --thumbnails-width: 160px;
+}

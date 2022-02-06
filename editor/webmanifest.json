@@ -1,0 +1,34 @@
+{
+  "short_name": "Presentation Remix",
+  "name": "Pres Remix",
+  "id": "/?source=pwa",
+  "icons": [
+    {
+      "src": "/assets/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3367D6",
+  "description": "Create and edit presentations",
+  "file_handlers": [
+    {
+      "action": "/?source=pwa",
+      "name": "Presentations",
+      "accept": {
+        "application/presentation": [".pres"]
+      },
+      "icons": [
+        {
+          "src": "/assets/logo.svg",
+          "type": "image/svg+xml",
+          "sizes": "512x512"
+        }
+      ]
+    }
+  ]
+}

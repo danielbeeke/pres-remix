@@ -1,0 +1,14 @@
+.thumbnails {
+  padding-block: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.thumbnail {
+  max-width: 100%;
+  text-align: inherit;
+  padding: 0;
+  border: none;
+  margin: 0;
+}

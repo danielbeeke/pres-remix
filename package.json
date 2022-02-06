@@ -1,0 +1,22 @@
+{
+  "name": "pres-remix",
+  "version": "0.0.0",
+  "scripts": {
+    "editor-dev": "cd editor && vite",
+    "editor-build": "cd editor && tsc && vite build",
+    "editor-preview": "cd editor && vite preview"
+  },
+  "devDependencies": {
+    "sass": "^1.49.7",
+    "typescript": "^4.4.4",
+    "vite": "^2.7.2"
+  },
+  "dependencies": {
+    "@types/wicg-file-system-access": "^2020.9.5",
+    "jsonld": "^5.2.0",
+    "rdf-form": "^0.1.11",
+    "reveal.js": "^4.2.1",
+    "ube": "^0.2.1",
+    "universal-router": "^9.1.0"
+  }
+}
