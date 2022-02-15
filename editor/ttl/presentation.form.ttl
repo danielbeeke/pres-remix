@@ -13,3 +13,10 @@ presentationForm:title
     form:label        "Title"@en ;
     form:binding      presentation:title ;
     form:order        2 .
+
+presentationForm:domain
+    a                 form:Field ;
+    form:widget       "string" ;
+    form:label        "Domain"@en ;
+    form:binding      presentation:domain ;
+    form:order        3 .

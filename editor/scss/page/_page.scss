@@ -1,8 +1,7 @@
 .page {
-  padding-inline: 40px;
   height: 100%;
   display: grid;
-  gap: 40px;
-  grid-template-columns: var(--thumbnails-width) 500px 1fr;
+  gap: 60px;
+  grid-template-columns: var(--thumbnails-width) 600px 1fr;
   grid-template-areas: "thumbnails left right";
 }

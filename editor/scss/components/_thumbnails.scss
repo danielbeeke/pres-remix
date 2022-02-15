@@ -1,14 +1,32 @@
 .thumbnails {
-  padding-block: 40px;
+  padding-block: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-inline-start: 20px;
 }
 
 .thumbnail {
   max-width: 100%;
   text-align: inherit;
+  cursor: pointer;
   padding: 0;
-  border: none;
   margin: 0;
+  opacity: .7;
+  border: 3px solid var(--color-gray-light);
+
+  &.active,
+  &:hover {
+    opacity: 1;
+    border: 3px solid var(--color-text);
+  }
+}
+
+.menu {
+  display: flex;
+  gap: 5px;
+
+  .button {
+    flex: 1 1 auto;
+  }
 }

@@ -1,7 +1,11 @@
-import { JsonLdProxy } from './JsonLdProxy';
+import { JsonLdProxy } from 'rdf-form';
 import { presentationUri, slideUri, base } from './constants'
 import slugify from '../helpers/slugify'
-import { compact, expand } from 'jsonld'
+import { expand } from 'jsonld'
+import { app } from '../App'
+import { loadStyle } from '../helpers/loadStyle'
+
+export const dereferenceCache = new Map()
 
 class StateClass extends EventTarget {
 
@@ -12,26 +16,56 @@ class StateClass extends EventTarget {
 
   #context = { 
     'presentation': presentationUri,
-    'slides': slideUri 
+    'slide': slideUri 
   }
+
+  #proxy = null
 
   set presentation (value) {
     this.#presentation = value
   }
 
   get presentation () {
-    return JsonLdProxy(this.#presentation, this.#context)
+    if (!this.#proxy) {
+      this.#proxy = JsonLdProxy(this.#presentation, this.#context)
+    }
+    return this.#proxy
+  }
+
+  async open () {
+    const [handle] = await window.showOpenFilePicker({
+      types: [{
+        description: 'Presentation',
+        accept: {'application/presentation': ['.pres']},
+      }]
+    })
+
+    await this.load(handle)
+    await app.render()
+    app.scaleSlides()
   }
 
   async load (handle: FileSystemFileHandle) {
+    this.#proxy = null
     const file = await handle.getFile()
     const json = await file.text()
     this.#presentation = (await expand(JSON.parse(json)))[0]
+
+    let env = dereferenceCache.get(State.presentation['presentation:domain']?._)
+
+    if (!env && this.presentation['presentation:domain']?._) {
+      const htmlText = await fetch(this.presentation['presentation:domain']?._).then(response => response.text())
+      const jsonText = htmlText.split('<script type="application/json" id="env-json">')[1].split('</script>')[0]
+      env = JSON.parse(jsonText)
+      dereferenceCache.set(this.presentation['presentation:domain']?._, env)
+    }
+
+    if (env?.styles) await loadStyle(env.styles)
   }
 
   async save () {
     const handle = await window.showSaveFilePicker({
-      suggestedName: slugify(State.presentation['presentation:title']?._) + '.pres',
+      suggestedName: slugify(this.presentation['presentation:title']?._) + '.pres',
       types: [{
         description: 'Presentation',
         accept: {'application/presentation': ['.pres']},
@@ -39,11 +73,11 @@ class StateClass extends EventTarget {
     })
 
     const writableStream = await handle.createWritable()
-    this.#presentation['@context'] = this.#context
+    this.presentation['@context'] = this.#context
     const fileUri = `${base}/${handle.name.substring(0, handle.name.length - 5)}`
-    if (!this.#presentation['@id']) this.#presentation['@id'] = fileUri
+    if (!this.presentation['@id']) this.presentation['@id'] = fileUri
 
-    for (const slide of this.#presentation['presentation:slides']) {
+    for (const slide of this.presentation['presentation:slides']) {
       slide['@id'] = slide['@id'].replace('temp://', fileUri + '#')
     }
 

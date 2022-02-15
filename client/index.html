@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentation Remix</title>
+  <script type="module" src="/src/Presentation.ts"></script>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="stylesheet" type="text/css" href="/scss/style.scss" media="screen" /> 
+  <script type="application/json" id="env-json">
+    {
+      "presentation_url": "https://localhost:3002/${identifier}",
+      "styles": "https://localhost:3001/slides.scss",
+      "templates": [
+        {
+          "label": "One third strict",
+          "value": "om one-third strict"
+        },
+        {
+          "label": "One third see through",
+          "value": "om one-third see-through"
+        },
+        {
+          "label": "Two thirds strict",
+          "value": "om two-thirds strict"
+        },
+        {
+          "label": "Two thirds see through",
+          "value": "om two-thirds see-through"
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides" id="slides">
+
+    </div>
+  </div>
+</body>
+</html>

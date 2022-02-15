@@ -1,9 +1,9 @@
 import { Router } from './core/Router'
-import { render, html } from 'ube'
+import { render } from 'ube'
 import { goTo } from './helpers/goTo'
 import { SlideElement } from './types'
 import { State } from './core/State'
-import { RdfForm } from 'rdf-form'
+import { debounce } from './helpers/debounce'
 
 class App {
 
@@ -22,10 +22,7 @@ class App {
       }
     })
 
-    window.addEventListener('resize', () => {
-      const slides = document.querySelectorAll('.slide')
-      for (const slide of slides) (slide as SlideElement).refresh()
-    })
+    window.addEventListener('resize', this.scaleSlides)
 
     if (!location.search.includes('source') && 'serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js')
     if ('launchQueue' in window) {
@@ -34,7 +31,12 @@ class App {
       })
     }
 
-    this.render()
+    this.render().then(() => app.scaleSlides())
+  }
+
+  scaleSlides () {
+    const slides = document.querySelectorAll('.slide')
+    for (const slide of slides) (slide as SlideElement).refresh()
   }
 
   async render () {
@@ -47,7 +49,8 @@ class App {
       pointer = await route.template(pointer, response.context)
     }
 
-    render(document.body, pointer)
+    await render(document.body, pointer)
+    this.scaleSlides()
   }
 }
 

@@ -3,11 +3,39 @@
   .slide-form {
     grid-area: left;
     overflow-y: auto;
+    position: relative;
+
+    > .title {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 50px;
+
+      .button {
+        position: absolute;
+        right: 0;
+      }
+    }
   }
 
   .preview {
     grid-area: right;
     overflow: hidden;
+    display: grid;
     margin-block: auto;
+    height: 100%;
+    padding-inline: 70px;
+    background-color: rgb(224, 224, 224);
+  }
+
+  .preview-inner {
+    position: relative;
+    height: 100%;
+
+    .slide {
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }

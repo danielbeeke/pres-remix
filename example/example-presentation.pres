@@ -1,0 +1,102 @@
+{
+  "@id": "https://localhost:3000/example-presentation",
+  "@type": [
+    "https://localhost:3000/ttl/presentation.ttl#Presentation"
+  ],
+  "https://localhost:3000/ttl/presentation.ttl#domain": [
+    {
+      "@value": "https://localhost:3001"
+    }
+  ],
+  "https://localhost:3000/ttl/presentation.ttl#slides": [
+    {
+      "@id": "https://localhost:3000/example-presentation#test",
+      "@type": [
+        "https://localhost:3000/ttl/slide.ttl#Slide"
+      ],
+      "https://localhost:3000/ttl/slide.ttl#footer": [
+        {
+          "@value": "www.om.org"
+        }
+      ],
+      "https://localhost:3000/ttl/slide.ttl#image": [
+        {
+          "@value": "https://images.unsplash.com/photo-1640622842223-e1e39f4bf627?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"
+        }
+      ],
+      "https://localhost:3000/ttl/slide.ttl#layout": [
+        {
+          "@value": "om one-third strict"
+        }
+      ],
+      "https://localhost:3000/ttl/slide.ttl#subTitle": [],
+      "https://localhost:3000/ttl/slide.ttl#title": [
+        {
+          "@value": "<p>Sharing</p><p><b>God's love!</b></p>"
+        }
+      ]
+    },
+    {
+      "@id": "https://localhost:3000/example-presentation#zcxzcxz",
+      "@type": [
+        "https://localhost:3000/ttl/slide.ttl#Slide"
+      ],
+      "https://localhost:3000/ttl/slide.ttl#image": [
+        {
+          "@value": "https://images.unsplash.com/photo-1643000726008-5745d15ab9db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+        }
+      ],
+      "https://localhost:3000/ttl/slide.ttl#image2": [
+        {
+          "@value": "https://www.vhv.rs/dpng/f/194-1944197_guy-walking-png.png"
+        }
+      ],
+      "https://localhost:3000/ttl/slide.ttl#layout": [
+        {
+          "@value": "om two-thirds see-through"
+        }
+      ],
+      "https://localhost:3000/ttl/slide.ttl#subTitle": [
+        {
+          "@value": "About MediaWorks"
+        }
+      ],
+      "https://localhost:3000/ttl/slide.ttl#title": [
+        {
+          "@value": "<p>We are a global community of Jesus followers, united to share God's love <b>with those who don't know it.</b></p>"
+        }
+      ]
+    },
+    {
+      "@id": "https://localhost:3000/example-presentation#psharingppbgods-lovebp",
+      "@type": [
+        "https://localhost:3000/ttl/slide.ttl#Slide"
+      ],
+      "https://localhost:3000/ttl/slide.ttl#footer": [
+        {
+          "@value": "About MediaWorks"
+        }
+      ],
+      "https://localhost:3000/ttl/slide.ttl#image": [
+        {
+          "@value": "https://images.unsplash.com/photo-1640622842223-e1e39f4bf627?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80"
+        }
+      ],
+      "https://localhost:3000/ttl/slide.ttl#layout": [
+        {
+          "@value": "om one-third see-through"
+        }
+      ],
+      "https://localhost:3000/ttl/slide.ttl#title": [
+        {
+          "@value": "<p>Sharing</p><p><b>God's love!</b></p>"
+        }
+      ]
+    }
+  ],
+  "https://localhost:3000/ttl/presentation.ttl#title": [
+    {
+      "@value": "Example presentation"
+    }
+  ]
+}

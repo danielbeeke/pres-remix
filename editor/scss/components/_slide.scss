@@ -1,13 +1,14 @@
-.slide {
+section.slide {
   overflow: hidden;
   aspect-ratio: 800 / 600;
+  position: relative;
 
   .inner {
-    background-color: gray;
     transform: scale(var(--factor));
-    width: 800px;
-    height: 600px;
     transform-origin: top left;
-    display: flex;
+    width: 800px;
+    height: 600px;  
+    position: absolute;
+    top: 0;
   }
 }

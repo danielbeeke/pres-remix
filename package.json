@@ -2,9 +2,14 @@
   "name": "pres-remix",
   "version": "0.0.0",
   "scripts": {
+    "dev": "concurrently \"npm:client-dev\" \"npm:editor-dev\" \"npm:server-dev\"",
+    "client-dev": "cd client && vite",
+    "client-build": "cd client && tsc && vite build",
+    "client-preview": "cd client && vite preview",
     "editor-dev": "cd editor && vite",
     "editor-build": "cd editor && tsc && vite build",
-    "editor-preview": "cd editor && vite preview"
+    "editor-preview": "cd editor && vite preview",
+    "server-dev": "cd server && deno run --allow-all --watch --unstable Server.ts ../example"
   },
   "devDependencies": {
     "sass": "^1.49.7",
@@ -13,8 +18,10 @@
   },
   "dependencies": {
     "@types/wicg-file-system-access": "^2020.9.5",
+    "concurrently": "^7.0.0",
+    "fitty": "^2.3.6",
     "jsonld": "^5.2.0",
-    "rdf-form": "^0.1.11",
+    "rdf-form": "^0.1.13",
     "reveal.js": "^4.2.1",
     "ube": "^0.2.1",
     "universal-router": "^9.1.0"

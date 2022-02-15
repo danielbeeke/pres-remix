@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "server"
+		}
+	],
+	"settings": {
+		"deno.lint": false,
+		"deno.unstable": true
+	}
+}

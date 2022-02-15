@@ -1,6 +1,6 @@
 # Presentation remix
 
-Presentation remix is a set of programs that allow an organization to have various presentations where chunks of te slides are re-used. Those slides will always be served from the source and in the various presentations there are links to those slides.
+Presentation remix is a set of programs that allow an organization to have various presentations where chunks of the slides are re-used. Those slides will always be served from the source and in the various presentations there are links to those slides.
 
 The software used: reveal.js, rdf-form, Chrome developer version (new API: file handling API).
 
@@ -30,6 +30,6 @@ You will find documentation what and how to edit inside the index.html.
 
 ### Editor
 
-The editor is organization agnostic. You can install it with the Chrome browser. Open up pres-remix.danielbeeke.nl. flollow the steps in the wizard.
+The editor is organization agnostic. You can install it with the Chrome browser. Open up pres-remix.danielbeeke.nl. Follow the steps in the wizard.
 
 It will install a desktop PWA on your machine with settings that map to your organization. These settings should be hosted somewhere. A special prefilled link can be made so coworkers can easily install the editor.

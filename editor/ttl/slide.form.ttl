@@ -16,30 +16,42 @@ slideForm:subTitle
 
 slideForm:title
     a                 form:Field ;
-    form:widget       "string" ;
+    form:widget       "wysiwyg" ;
     form:label        "Title"@en ;
     form:binding      slide:title ;
     form:order        2 .
 
 slideForm:body
     a                 form:Field ;
-    form:widget       "textarea" ;
+    form:widget       "wysiwyg" ;
     form:label        "Body"@en ;
     form:binding      slide:body ;
-    form:rows         10 ;
     form:order        3 .
+
+slideForm:footer
+    a                 form:Field ;
+    form:widget       "string" ;
+    form:label        "Footer"@en ;
+    form:binding      slide:footer ;
+    form:order        4 .
 
 slideForm:image
     a                 form:Field ;
     form:widget       "url-image" ;
     form:label        "Image"@en ;
     form:binding      slide:image ;
-    form:order        4 .
+    form:order        5 .
+
+slideForm:image2
+    a                 form:Field ;
+    form:widget       "url-image" ;
+    form:label        "Image 2"@en ;
+    form:binding      slide:image2 ;
+    form:order        6 .
 
 slideForm:layout
     a                 form:Field ;
     form:widget       "dropdown" ;
-    form:default      "one-third-picture" ;
     form:option       ([
         form:value    "full-picture" ;
         form:label    "Full picture" ;
@@ -52,4 +64,4 @@ slideForm:layout
     ]) ;
     form:label        "Layout"@en ;
     form:binding      slide:layout ;
-    form:order        5 .
+    form:order        7 .

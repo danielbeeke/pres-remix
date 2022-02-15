@@ -1,0 +1,21 @@
+.form-element {
+  margin-bottom: -10px;
+}
+
+.form-element[type="url-image"] {
+  img {
+    max-height: 100px;
+  }
+}
+
+.pell-content {
+  height: 100px;
+}
+
+.actions {
+  display: none;
+}
+
+.button.remove {
+  display: none;
+}

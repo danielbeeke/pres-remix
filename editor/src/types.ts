@@ -3,7 +3,9 @@ export type Slide = {
   subtitle?: string,
   body?: string,
   image?: string,
-  layout: string
+  image2?: string,
+  layout: string,
+  footer?: string
 }
 
 export type SlideElement = HTMLDivElement & { refresh: any }
