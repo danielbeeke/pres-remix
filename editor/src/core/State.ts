@@ -4,6 +4,9 @@ import slugify from '../helpers/slugify'
 import { expand } from 'jsonld'
 import { app } from '../App'
 import { loadStyle } from '../helpers/loadStyle'
+import { hash } from '../helpers/hash';
+import { lastPart } from '../helpers/lastPart';
+import { goTo } from '../helpers/goTo';
 
 export const dereferenceCache = new Map()
 
@@ -86,6 +89,25 @@ class StateClass extends EventTarget {
     const blob = new Blob([json], { type: 'application/presentation' })
     const stream = blob.stream();
     await stream.pipeTo(writableStream);
+  }
+
+  createSlide (beforeIndex) {
+    const newSlide = {
+      '@id': 'temp://' + hash(performance.now().toString(36)),
+      '@context': this.#context,
+      '@type': 'slide:Slide',
+    }
+    this.presentation['presentation:slides'].splice(beforeIndex, 0, newSlide)
+    app.render()
+  }
+
+  createReference (beforeIndex) {
+    console.log(beforeIndex)
+  }
+
+  deleteSlide (index) {
+    this.presentation['presentation:slides'].splice(index, 1)
+    goTo('/presentation')
   }
 }
 export const State = new StateClass()

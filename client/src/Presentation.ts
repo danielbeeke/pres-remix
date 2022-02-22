@@ -31,13 +31,13 @@ if (env.styles) loadStyle(env.styles)
   document.querySelector('#slides').innerHTML = presentation['presentation:slides']
   .map(slide => slideToHtml(slideToObject(slide))).join('')
 
-  const factor = 800 / window.innerWidth
+  const factor = 1280 / window.innerWidth
 
   let deck = Reveal({
     plugins: [Markdown, Highlight, Notes],
     hash: true,
     margin: 0,
-    width: 800,
+    width: 1280,
     height: window.innerHeight * factor,
     minScale: 0.1,
     maxScale: 10.0
@@ -52,10 +52,10 @@ if (env.styles) loadStyle(env.styles)
   }
 
   window.addEventListener('resize', () => {
-    const factor = 800 / window.innerWidth
+    const factor = 1280 / window.innerWidth
 
     deck.configure({ 
-      width: 800,
+      width: 1280,
       height: window.innerHeight * factor,  
     });
   })

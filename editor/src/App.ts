@@ -3,7 +3,6 @@ import { render } from 'ube'
 import { goTo } from './helpers/goTo'
 import { SlideElement } from './types'
 import { State } from './core/State'
-import { debounce } from './helpers/debounce'
 
 class App {
 

@@ -28,7 +28,7 @@ body {
     grid-template-columns: 1fr 1fr 40px;
     grid-template-areas: "left right bar";
     background-color: white;
-  
+
     &:after {
       position: absolute;
       top: 80px;

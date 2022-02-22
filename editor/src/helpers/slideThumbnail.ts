@@ -1,11 +1,11 @@
 import { Slide, SlideElement } from '../types'
 import { html } from 'ube'
 
-export const slideThumbnail = (slide: Slide) => {
+export const slideThumbnail = (slide: Slide, onclick = null) => {
   return html`
-    <section ref=${(element: SlideElement) => {
+    <section onclick=${onclick} ref=${(element: SlideElement) => {
       element.refresh = () => {
-        const factor = element.clientWidth / 800
+        const factor = element.clientWidth / 1280
         element.style.setProperty('--factor', factor.toString())  
       }
     }} class=${`${slide.layout ?? ''} slide`}>

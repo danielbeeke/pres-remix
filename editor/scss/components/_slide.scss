@@ -1,13 +1,13 @@
 section.slide {
   overflow: hidden;
-  aspect-ratio: 800 / 600;
+  aspect-ratio: 1280/768;
   position: relative;
 
   .inner {
     transform: scale(var(--factor));
     transform-origin: top left;
-    width: 800px;
-    height: 600px;  
+    width: 1280px;
+    height: 768px;  
     position: absolute;
     top: 0;
   }

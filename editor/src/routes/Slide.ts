@@ -20,13 +20,7 @@ export const Slide = {
 
   async template (innerTemplates: Array<typeof html> = [], context) {
     const item = State.presentation['presentation:slides'].find(slide => lastPart(slide['@id']) === context.params.slide)
-
-    this.data = context.params.slide === 'create' ? {
-      '@context': { 'slide': slideUri },
-      '@type': 'slide:Slide',
-    } : item?.$
-
-    if (!this.data) return goTo('/slide/create')
+    this.data = item?.$
 
     const preview = slideThumbnail({
       title: item?.['slide:title']?._,
@@ -40,7 +34,6 @@ export const Slide = {
 
     if (!forms[context.params.slide]) {
       forms[context.params.slide] = html`
-      
       <rdf-form id=${context.params.slide} ref=${(element: RdfForm) => {
         this.form = element
         let env = dereferenceCache.get(State.presentation['presentation:domain']?._)
@@ -53,39 +46,18 @@ export const Slide = {
               jsonldKey: 'value'
             }))
           }
-        }, { once: true })
-
-        element.addEventListener('ready', () => {
-          if (context.params.slide === 'create') this.data = element?.formData?.proxy.$
-        }, { once: true })
+        })
       }}
       extra-stylesheets="/scss/rdf-form.scss"
-      onready=${(event) => {
-        this.data = event.detail.proxy.$
-      }}
+      onready=${(event) => this.data = event.detail.proxy.$}
       onfieldchange=${(event) => {
-        const slug = context.params.slide === 'create' ? hash((new Date()).getTime()) : context.params.slide
-        if (!this.data?.['@id'] && this.data) this.data['@id'] = `temp://${slug}`
-
-        if (context.params.slide === 'create' && State.presentation['presentation:slides'].find(slide => slide['@id'] === `${base}/${slug}`)) {
-          throw new Error('Slide slug has already been taken')
+        let index
+        for (const [slideIndex, slide] of State.presentation['presentation:slides'].entries()) {
+          if (lastPart(slide['@id']) === context.params.slide) index = slideIndex
         }
 
-        if (context.params.slide === 'create') {
-          State.presentation['presentation:slides'].push(this.data)
-          return goTo(`/slide/${slug}`)
-        }
-        else {
-          let index
-          for (const [slideIndex, slide] of State.presentation['presentation:slides'].entries()) {
-            if (lastPart(slide['@id']) === context.params.slide) index = slideIndex
-          }
-
-          State.presentation['presentation:slides'][index] = this.data
-        }
-
+        State.presentation['presentation:slides'][index] = this.data
         app.render()
-        // this?.form?.renderer?.render()
       }}
       data=${JSON.stringify(this.data)}
       class="form" form=${slideFormUri} />
@@ -96,17 +68,6 @@ export const Slide = {
       <div class="slide-form">
         <h1 class="title">
           Edit slide: <em>${slideTextToTitle(this.data)?.replace(/<[^>]*>?/gm, ' ')}</em>
-          ${context.params.slide !== 'create' ? html`
-            <button class="button secondary" onclick=${() => {
-              const item = State.presentation['presentation:slides']
-              .find(slide => lastPart(slide['@id']) === context.params.slide)
-              const index = State.presentation['presentation:slides'].indexOf(item)
-
-              State.presentation['presentation:slides'].splice(index, 1)
-
-              goTo('/presentation')
-            }}>${icon('close')}</button>
-          ` : null}
         </h1>
         
         ${forms[context.params.slide]}
