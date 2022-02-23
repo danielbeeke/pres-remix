@@ -1,0 +1,15 @@
+@prefix form:         <http://rdf.danielbeeke.nl/form/form-dev.ttl#> .
+@prefix slideForm:    <https://localhost:3000/ttl/slide.form.ttl#> .
+@prefix slide:        <https://localhost:3000/ttl/slide.ttl#> .
+
+slideForm:
+    form:binding      slide:Reference ;
+    form:label        "reference"@en ;
+    a                 form:Form .
+
+slideForm:url
+    a                 form:Field ;
+    form:widget       "url" ;
+    form:label        "URL"@en ;
+    form:binding      slide:url ;
+    form:order        1 .

@@ -5,19 +5,20 @@ import { expand } from 'jsonld'
 import { app } from '../App'
 import { loadStyle } from '../helpers/loadStyle'
 import { hash } from '../helpers/hash';
-import { lastPart } from '../helpers/lastPart';
 import { goTo } from '../helpers/goTo';
+import { getFirst } from '../helpers/getFirst';
+import { collapse } from '../helpers/collapse';
 
 export const dereferenceCache = new Map()
 
 class StateClass extends EventTarget {
 
   #presentation: {} = {
-    '@type': `${presentationUri}Presentation`,
+    '@type': [`${presentationUri}Presentation`],
     [`${presentationUri}slides`]: []
   }
 
-  #context = { 
+  context = { 
     'presentation': presentationUri,
     'slide': slideUri 
   }
@@ -30,7 +31,9 @@ class StateClass extends EventTarget {
 
   get presentation () {
     if (!this.#proxy) {
-      this.#proxy = JsonLdProxy(this.#presentation, this.#context)
+      this.#proxy = JsonLdProxy(this.#presentation, this.context, {
+        '__': (value) => collapse(getFirst(value), this.context)
+      })
     }
     return this.#proxy
   }
@@ -76,7 +79,7 @@ class StateClass extends EventTarget {
     })
 
     const writableStream = await handle.createWritable()
-    this.presentation['@context'] = this.#context
+    this.presentation['@context'] = this.context
     const fileUri = `${base}/${handle.name.substring(0, handle.name.length - 5)}`
     if (!this.presentation['@id']) this.presentation['@id'] = fileUri
 
@@ -94,16 +97,21 @@ class StateClass extends EventTarget {
   createSlide (beforeIndex) {
     const newSlide = {
       '@id': 'temp://' + hash(performance.now().toString(36)),
-      '@context': this.#context,
-      '@type': 'slide:Slide',
+      '@context': this.context,
+      '@type': ['slide:Slide'],
     }
     this.presentation['presentation:slides'].splice(beforeIndex, 0, newSlide)
     app.render()
   }
 
   createReference (beforeIndex) {
-    console.log(beforeIndex)
-  }
+    const newSlide = {
+      '@id': 'temp://' + hash(performance.now().toString(36)),
+      '@context': this.context,
+      '@type': ['slide:Reference'],
+    }
+    this.presentation['presentation:slides'].splice(beforeIndex, 0, newSlide)
+    app.render()  }
 
   deleteSlide (index) {
     this.presentation['presentation:slides'].splice(index, 1)

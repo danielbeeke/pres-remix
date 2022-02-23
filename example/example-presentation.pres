@@ -10,6 +10,17 @@
   ],
   "https://localhost:3000/ttl/presentation.ttl#slides": [
     {
+      "@id": "https://localhost:3000/example-presentation#3893316180495361",
+      "@type": [
+        "https://localhost:3000/ttl/slide.ttl#Reference"
+      ],
+      "https://localhost:3000/ttl/slide.ttl#url": [
+        {
+          "@value": "https://localhost:3001/twee/test"
+        }
+      ]
+    },
+    {
       "@id": "https://localhost:3000/example-presentation#test",
       "@type": [
         "https://localhost:3000/ttl/slide.ttl#Slide"

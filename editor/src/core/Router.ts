@@ -2,6 +2,7 @@ import UniversalRouter from 'universal-router'
 import { Edit } from '../routes/Edit'
 import { Presentation } from '../routes/Presentation'
 import { Slide } from '../routes/Slide'
+import { Reference } from '../routes/Reference'
 
 const routes: Array<{}> = [
   {
@@ -15,6 +16,10 @@ const routes: Array<{}> = [
   {
     path: '/slide/:slide',
     action: (context) => ({ routes: [Edit, Slide], context }),
+  },
+  {
+    path: '/reference/:slide',
+    action: (context) => ({ routes: [Edit, Reference], context }),
   }
 ]
 

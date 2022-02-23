@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 30px;
   padding-inline-start: 20px;
+  overflow-y: auto;
 }
 
 .thumbnail {
@@ -66,7 +67,16 @@
 
 .menu {
   display: flex;
+  flex-direction: column;
   gap: 5px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+
+  .disk {
+    gap: 5px;
+    display: flex;
+  }
 
   .button {
     flex: 1 1 auto;
