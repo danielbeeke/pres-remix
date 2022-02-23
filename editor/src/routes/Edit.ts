@@ -3,9 +3,9 @@ import { goTo } from '../helpers/goTo';
 import { slideThumbnail } from '../helpers/slideThumbnail'
 import 'rdf-form';
 import { State } from '../core/State';
-import { lastPart } from '../helpers/lastPart';
+import { lastPart } from '../../../shared-helpers/lastPart';
 import { icon } from '../helpers/icon';
-import { slideToObject } from '../helpers/slideToObject';
+import { slideToObject } from '../../../shared-helpers/slideToObject';
 import { dereferenceSlide } from '../helpers/dereferenceSlide';
 
 export const Edit = {
@@ -18,7 +18,7 @@ export const Edit = {
             <button class="button primary big" onclick=${() => State.open()}>${icon('load')}</button>
             <button class="button primary big" onclick=${() => State.save()}>${icon('save')}</button>
           </div>
-          <button class="button secondary" onclick=${() => goTo('/presentation')}>Edit presentation</button>
+          <button class=${`button secondary ${location.pathname === '/presentation' ? 'active' : ''}`} onclick=${() => goTo('/presentation')}>Edit presentation</button>
           ${State.presentation['presentation:slides'].length === 0 ? html`
             <button class="button secondary" onclick=${() => State.createSlide(0)}>Create a new slide</button>
           ` : null}  
@@ -36,8 +36,9 @@ export const Edit = {
             <div class="buttons top">
               <button class="icon-button add-slide" onclick=${() => State.createSlide(index)}>${icon('plus')}</button>
               <button class="icon-button add-reference" onclick=${() => State.createReference(index)}>${icon('link')}</button>
-              <button class="icon-button delete" onclick=${() => State.deleteSlide(index)}>${icon('close')}</button>
             </div>
+            <button class="icon-button delete" onclick=${() => State.deleteSlide(index)}>${icon('close')}</button>
+
             ${slideThumbnail(slideToObject(loadedSlide), () => goTo(`/${type}/${lastPart(slide['@id'])}`))}
             <div class="buttons bottom">
               <button class="icon-button add-slide" onclick=${() => State.createSlide(index + 1)}>${icon('plus')}</button>

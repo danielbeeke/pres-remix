@@ -9,7 +9,7 @@ slideForm:
 
 slideForm:url
     a                 form:Field ;
-    form:widget       "url" ;
-    form:label        "URL"@en ;
+    form:widget       "dropdown" ;
+    form:label        "Slide(s)"@en ;
     form:binding      slide:url ;
     form:order        1 .

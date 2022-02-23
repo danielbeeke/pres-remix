@@ -5,11 +5,12 @@ import { app } from '../App';
 import { slideThumbnail } from '../helpers/slideThumbnail';
 import { referenceFormUri } from '../core/constants';
 import { State } from '../core/State';
-import { lastPart } from '../helpers/lastPart';
+import { lastPart } from '../../../shared-helpers/lastPart';
 import { textToObject } from '../helpers/textToObject';
 import { goTo } from '../helpers/goTo';
-import { slideToObject } from '../helpers/slideToObject';
+import { slideToObject } from '../../../shared-helpers/slideToObject';
 import { dereferenceSlide } from '../helpers/dereferenceSlide';
+import { dereferenceDomain } from '../helpers/dereferenceDomain';
 
 const forms = {}
 
@@ -24,11 +25,35 @@ export const Reference = {
     const slide = await dereferenceSlide(item['slide:url']?._)
     const preview = slideThumbnail(slideToObject(slide))
 
+    let indexData
+    if (State.presentation['presentation:domain']?._) {
+      const env = await dereferenceDomain(State.presentation['presentation:domain']?._) as any
+      const indexDataResponse = await fetch(env.presentation_url.replace('${identifier}', '_all'))
+      indexData = await indexDataResponse.json()
+    }
+
     if (!forms[context.params.slide]) {
       forms[context.params.slide] = html`
       <rdf-form id=${context.params.slide} ref=${(element: RdfForm) => this.form = element}
       extra-stylesheets="/scss/rdf-form.scss"
       onready=${(event) => this.data = event.detail.proxy.$}
+      ondropdown-options=${(event) => {
+   
+        for (const presentation of indexData.presentations) {
+          event.detail.options.push({
+            uri: `${State.presentation['presentation:domain']?._}/${presentation.id}`,
+            label: `${presentation.id} (all slides)`
+          })
+
+          for (const slide of presentation.slides) {
+            event.detail.options.push({
+              uri: `${State.presentation['presentation:domain']?._}/${presentation.id}/${slide}`,
+              label: `- ${presentation.id}: ${slide}` 
+            })  
+          }
+
+        }
+      }}
       onfieldchange=${(event) => {
         let index
         for (const [slideIndex, slide] of State.presentation['presentation:slides'].entries()) {

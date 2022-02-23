@@ -3,13 +3,13 @@ import { State } from '../core/State';
 import 'rdf-form';
 import { presentationFormUri, presentationUri } from '../core/constants';
 import { app } from '../App';
+import { textToObject } from '../helpers/textToObject';
 
 export const Presentation = {
 
   async template (innerTemplates: Array<typeof html> = [], context) {
-    return html`
+    return html.for(textToObject(State.presentation['@id']))`
       <div class="presentation-form">
-        <h1>Edit presentation: ${State.presentation['presentation:title']?._}</h1>
         <rdf-form onsubmit=${(event: CustomEvent) => {
           State.presentation = event.detail.proxy
           app.render()

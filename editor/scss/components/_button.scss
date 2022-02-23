@@ -13,6 +13,10 @@
       height: 22px;
     }  
   }
+
+  &.active {
+    font-weight: bold;
+  }
 }
 
 .title {

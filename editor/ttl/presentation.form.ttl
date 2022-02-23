@@ -20,3 +20,10 @@ presentationForm:domain
     form:label        "Domain"@en ;
     form:binding      presentation:domain ;
     form:order        3 .
+
+presentationForm:isReusable
+    a                 form:Field ;
+    form:widget       "checkbox" ;
+    form:label        "Reusable"@en ;
+    form:binding      presentation:isReusable ;
+    form:order        4 .

@@ -33,7 +33,9 @@ export const slideThumbnail = (slide: Slide, onclick = null) => {
         <h1 class="title" ref=${element => element.innerHTML = slide.title}></h1>
         ` : null}
         
-        <div class="body">${slide.body}</div>
+        ${slide.body ? html`
+        <div class="body" ref=${element => element.innerHTML = slide.body}></div>
+        ` : null}
       </div>
 
       </div>

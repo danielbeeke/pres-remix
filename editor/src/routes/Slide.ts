@@ -5,11 +5,11 @@ import { app } from '../App';
 import { slideThumbnail } from '../helpers/slideThumbnail';
 import { slideFormUri } from '../core/constants';
 import { State } from '../core/State';
-import { lastPart } from '../helpers/lastPart';
+import { lastPart } from '../../../shared-helpers/lastPart';
 import { goTo } from '../helpers/goTo';
 import { dereferenceCache } from '../core/State';
 import { textToObject } from '../helpers/textToObject';
-import { slideToObject } from '../helpers/slideToObject';
+import { slideToObject } from '../../../shared-helpers/slideToObject';
 
 const forms = {}
 

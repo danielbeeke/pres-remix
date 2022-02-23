@@ -2,9 +2,12 @@
   padding-block: 20px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
+  padding-block: 50px;
   padding-inline-start: 20px;
   overflow-y: auto;
+  overflow-x: visible;
+  padding-right: 20px;
 }
 
 .thumbnail {
@@ -16,6 +19,7 @@
   opacity: .7;
   position: relative;
   border: 3px solid var(--color-gray-light);
+  transition: margin .3s ease-in-out;
 
   &.active,
   &:hover {
@@ -29,6 +33,7 @@
   }
 
   .buttons {
+    padding: 2px;
     position: absolute;
     gap: 5px;
     z-index: 2;
@@ -42,22 +47,27 @@
   }
 
   .top {
-    top: -20px;
+    top: -41px;
+  }
 
-    .delete {
-      margin-left: auto;
-    }
+
+  .delete {
+    position: absolute;
+    right: -20px;
+    pointer-events: none;
+    top: 50%;
+    z-index: 4;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    transform: translateY(-50%);
   }
 
   .bottom {
-    bottom: -20px;
-
-    .add-reference {
-      margin-right: auto;
-    }
+    bottom: -41px;
   }
 
   &:hover {
+    .delete,
     .buttons {
       pointer-events: all;
       opacity: 1;
@@ -72,6 +82,7 @@
   margin-top: 20px;
   margin-left: 20px;
   margin-bottom: 10px;
+  padding-right: 20px;
 
   .disk {
     gap: 5px;

@@ -3,9 +3,12 @@ import Highlight from 'reveal.js/plugin/highlight/highlight.esm.js';
 import Notes from 'reveal.js/plugin/notes/notes.esm.js';
 import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
 import { JsonLdProxy } from 'rdf-form';
-import { loadStyle } from './helpers/loadStyle';
+import { loadStyle } from '../../shared-helpers/loadStyle';
 import { slideToHtml } from './helpers/slideToHtml';
-import { slideToObject } from './helpers/slideToObject';
+import { slideToObject } from '../../shared-helpers/slideToObject';
+import { context } from '../../shared-helpers/constants';
+import { lastPart } from '../../shared-helpers/lastPart';
+import { dereferenceSlide } from '../../shared-helpers/dereferenceSlide';
 
 const env = JSON.parse(document.querySelector('#env-json').innerHTML)
 const dataUrl = (identifier: string) => env.presentation_url.replace("${identifier}", identifier);
@@ -17,10 +20,7 @@ if (env.styles) loadStyle(env.styles)
    if (!identifier) throw new Error('Please open the site with a presentation identifier')
 
    const response = await fetch(dataUrl(identifier))
-   const presentation = JsonLdProxy(await response.json(), {
-      'presentation': `https://localhost:3000/ttl/presentation.ttl#`,
-      'slide': `https://localhost:3000/ttl/slide.ttl#`
-   })
+   const presentation = JsonLdProxy(await response.json(), context)
 
    const originalReplaceState = history.replaceState
    history.replaceState = (_a, _b, url) => {
@@ -28,8 +28,12 @@ if (env.styles) loadStyle(env.styles)
     originalReplaceState.apply(history, [_a, _b, url])
   }
 
-  document.querySelector('#slides').innerHTML = presentation['presentation:slides']
-  .map(slide => slideToHtml(slideToObject(slide))).join('')
+  document.querySelector('#slides').innerHTML = (await Promise.all(presentation['presentation:slides']
+  .map(async slide => {
+    const type = lastPart(slide['@type']?._).toLowerCase()
+    const loadedSlide = type === 'reference' ? await dereferenceSlide(slide['slide:url']?._) : slide
+    return slideToHtml(slideToObject(loadedSlide))
+  }))).join('')
 
   const factor = 1280 / window.innerWidth
 
