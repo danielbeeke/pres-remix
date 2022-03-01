@@ -1,4 +1,4 @@
-export const slideToHtml = (slide) => `
+export const slideToHtml = (slide: any) => `
   <section id=${slide.id} class="${`${slide.layout ?? ''} slide`}">
     <div class="inner">
     ${slide.image ? `

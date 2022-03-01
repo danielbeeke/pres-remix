@@ -1,6 +1,6 @@
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix slide:   <https://localhost:3000/ttl/slide.ttl#> .
+@prefix slide:        <https://presentation.danielbeeke.nl/slide.ttl#> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix schema:  <http://schema.org/> .
@@ -15,4 +15,4 @@ slide:Slide
     a                             rdfs:Class ;
     rdfs:label                    "Slide"@en ;
     rdf:type                      owl:Thing, rdfs:Resource, schema:Text ;
-    form:Form                     <https://localhost:3000/slide.form.ttl> .
+    form:Form                     <https://presentation.danielbeeke.nl/slide.form.ttl#> .

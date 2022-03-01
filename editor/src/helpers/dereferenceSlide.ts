@@ -1,7 +1,7 @@
 import { JsonLdProxy } from "rdf-form"
-import { State } from "../core/State"
-import { lastPart } from '../../../shared-helpers/lastPart';
-import { dereferenceDomain } from "./dereferenceDomain"
+import { State } from '../core/State'
+import { lastPart } from '../../../shared-helpers/lastPart'
+import { dereferenceDomain } from '../../../shared-helpers/dereferenceDomain'
 
 export const dereferenceSlide = async (url) => {
   const env = await dereferenceDomain(url) as any

@@ -1,9 +1,9 @@
 import { JsonLdProxy } from 'rdf-form';
-import { presentationUri, slideUri, base } from './constants'
+import { presentationUri, slideUri, base } from '../../../shared-helpers/constants'
 import slugify from '../helpers/slugify'
-import { expand } from 'jsonld'
+import { expand, compact } from 'jsonld'
 import { app } from '../App'
-import { loadStyle } from '../helpers/loadStyle'
+import { loadStyle } from '../../../shared-helpers/loadStyle'
 import { hash } from '../helpers/hash';
 import { goTo } from '../helpers/goTo';
 import { getFirst } from '../helpers/getFirst';
@@ -87,7 +87,8 @@ class StateClass extends EventTarget {
       slide['@id'] = slide['@id'].replace('temp://', fileUri + '#')
     }
 
-    const [collapsedData] = await expand(this.#presentation)
+    const collapsedData = await compact(this.presentation.$, this.context)
+
     const json = JSON.stringify(collapsedData, null, 2)
     const blob = new Blob([json], { type: 'application/presentation' })
     const stream = blob.stream();

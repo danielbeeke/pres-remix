@@ -1,6 +1,6 @@
 @prefix form:                <http://rdf.danielbeeke.nl/form/form-dev.ttl#> .
-@prefix presentationForm:    <https://localhost:3000/ttl/presentation.form.ttl#> .
-@prefix presentation:        <https://localhost:3000/ttl/presentation.ttl#> .
+@prefix presentationForm:    <https://presentation.danielbeeke.nl/presentation.form.ttl#> .
+@prefix presentation:        <https://presentation.danielbeeke.nl/presentation.ttl#> .
 
 presentationForm:
     form:binding      presentation:Presentation ;
@@ -14,16 +14,23 @@ presentationForm:title
     form:binding      presentation:title ;
     form:order        2 .
 
+presentationForm:color
+    a                 form:Field ;
+    form:widget       "color" ;
+    form:label        "Color"@en ;
+    form:binding      presentation:color ;
+    form:order        3 .
+
 presentationForm:domain
     a                 form:Field ;
     form:widget       "string" ;
     form:label        "Domain"@en ;
     form:binding      presentation:domain ;
-    form:order        3 .
+    form:order        4 .
 
 presentationForm:isReusable
     a                 form:Field ;
     form:widget       "checkbox" ;
     form:label        "Reusable"@en ;
     form:binding      presentation:isReusable ;
-    form:order        4 .
+    form:order        5 .

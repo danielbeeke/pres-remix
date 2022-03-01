@@ -3,14 +3,14 @@ import 'rdf-form';
 import { RdfForm } from 'rdf-form';
 import { app } from '../App';
 import { slideThumbnail } from '../helpers/slideThumbnail';
-import { referenceFormUri } from '../core/constants';
+import { referenceFormUri } from '../../../shared-helpers/constants';
 import { State } from '../core/State';
 import { lastPart } from '../../../shared-helpers/lastPart';
 import { textToObject } from '../helpers/textToObject';
 import { goTo } from '../helpers/goTo';
 import { slideToObject } from '../../../shared-helpers/slideToObject';
 import { dereferenceSlide } from '../helpers/dereferenceSlide';
-import { dereferenceDomain } from '../helpers/dereferenceDomain';
+import { dereferenceDomain } from '../../../shared-helpers/dereferenceDomain'
 
 const forms = {}
 

@@ -3,7 +3,7 @@ import 'rdf-form';
 import { RdfForm } from 'rdf-form';
 import { app } from '../App';
 import { slideThumbnail } from '../helpers/slideThumbnail';
-import { slideFormUri } from '../core/constants';
+import { slideFormUri } from '../../../shared-helpers/constants';
 import { State } from '../core/State';
 import { lastPart } from '../../../shared-helpers/lastPart';
 import { goTo } from '../helpers/goTo';
@@ -31,11 +31,15 @@ export const Slide = {
 
         element.addEventListener('dropdown-options', (event) => {
           if (env?.templates) {
-            (event as CustomEvent).detail.element.options = env.templates.map(item => ({
+            (event as CustomEvent).detail.element.options = [{
+              label: 'Pick a layout',
+              uri: '',
+              jsonldKey: 'value'
+            }, ...env.templates.map(item => ({
               label: item.label,
               uri: item.value,
               jsonldKey: 'value'
-            }))
+            }))]
           }
         })
       }}

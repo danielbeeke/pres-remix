@@ -15,3 +15,15 @@ section.slide {
 .progress {
   display: none !important;
 }
+
+.link {
+  color: black;
+  text-decoration: none;
+  padding: 20px;
+  display: flex;
+  width: 100%;
+}
+
+body {
+  transition: background .4s ease-in-out;
+}

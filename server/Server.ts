@@ -1,8 +1,7 @@
 import { Application } from "https://deno.land/x/oak/mod.ts"
 import { exists} from "https://deno.land/std/fs/mod.ts";
-
-const presentationUri = 'https://localhost:3000/ttl/presentation.ttl#'
-const slideUri = 'https://localhost:3000/ttl/slide.ttl#'
+import { JSONLD } from "https://taisukef.github.io/jsonld-es/JSONLD.js";
+import { presentationUri, slideUri } from '../shared-helpers/constants.ts'
 
 const app = new Application()
 
@@ -18,8 +17,9 @@ app.use(async (context) => {
     for await (const dirEntry of files) {
       if (dirEntry.isFile && dirEntry.name.includes('.pres')) {
         const presentationText = Deno.readTextFileSync(`${Deno.cwd()}/${Deno.args[0]}/${dirEntry.name}`)
-        const presentation = JSON.parse(presentationText)
-        const slides = presentation[`${presentationUri}slides`].map((slide: any) => slide['@id'].split('#')[1])
+        const presentationRaw = JSON.parse(presentationText)
+        const [presentation] = await JSONLD().expand(presentationRaw)
+        const slides = presentation[`${presentationUri}slides`]?.map((slide: any) => slide['@id'].split('#')[1]) ?? []
 
         presentations.push({
           id: dirEntry.name.replace('.pres', ''),

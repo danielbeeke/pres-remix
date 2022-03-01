@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "presentation": "https://presentation.danielbeeke.nl/presentation.ttl#",
+    "slide": "https://presentation.danielbeeke.nl/slide.ttl#"
+  },
+  "@id": "https://presentation.danielbeeke.nl/new",
+  "@type": "presentation:Presentation",
+  "presentation:color": "#102406",
+  "presentation:domain": "https://presentation.danielbeeke.nl",
+  "presentation:slides": [
+    {
+      "@id": "https://presentation.danielbeeke.nl/new#4914995582519244",
+      "@type": "slide:Slide",
+      "slide:body": "<p>Woooooop</p>",
+      "slide:image": "https://images.unsplash.com/photo-1644703203770-03fbf142031f",
+      "slide:layout": "db main",
+      "slide:subTitle": "Hello!",
+      "slide:title": "<p>Hello!</p>"
+    },
+    {
+      "@id": "https://presentation.danielbeeke.nl/new2#2532530379624126",
+      "@type": "slide:Slide",
+      "slide:layout": "db main",
+      "slide:subTitle": "My second slide",
+      "slide:title": "<p>This is awesome!</p>"
+    }
+  ],
+  "presentation:title": "New"
+}

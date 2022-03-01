@@ -1,4 +1,4 @@
-export function loadStyle(src) {
+export function loadStyle(src: string) {
   return new Promise(function (resolve, reject) {
       if (document.querySelector(`[href="${src}"]`)) return resolve(src)
       

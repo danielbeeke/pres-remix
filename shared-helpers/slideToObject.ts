@@ -1,4 +1,4 @@
-export const slideToObject = (slide) => ({
+export const slideToObject = (slide: any) => ({
   id: slide?.['@id'].split('#').pop(),
   title: slide?.['slide:title']?._,
   subtitle: slide?.['slide:subTitle']?._,

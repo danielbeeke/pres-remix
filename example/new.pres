@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "presentation": "https://presentation.danielbeeke.nl/presentation.ttl#",
+    "slide": "https://presentation.danielbeeke.nl/slide.ttl#"
+  },
+  "@id": "https://presentation.danielbeeke.nl/new",
+  "@type": "presentation:Presentation",
+  "presentation:title": "New",
+  "presentation:domain": "https://presentation.danielbeeke.nl",
+  "presentation:slides": {
+    "@id": "https://presentation.danielbeeke.nl/new#4914995582519244",
+    "@type": "slide:Slide",
+    "slide:layout": "full-picture",
+    "slide:subTitle": "Hello!",
+    "slide:title": "<p>Hello!</p>"
+  }
+}
